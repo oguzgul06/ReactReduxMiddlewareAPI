@@ -12,23 +12,32 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <h1>React Dersleri</h1>
-      <h2>React Router</h2>
-      {props.countries.map((country) => {
-        return (
-          <div key={country.name}>
-            <h3>{country.name}</h3>
-            <h4>{country.capital}</h4>
-            <p>
-              <img
-                src={country.flag}
-                alt={country.name}
-                style={{ width: "100px" }}
-              />
-            </p>
-          </div>
-        );
-      })}
+      <h2>React Redux Middlaware API</h2>
+      {props.isLoading ? (
+        <p>
+          <img
+            style={{ width: 50, height: 50 }}
+            src="https://i.pinimg.com/originals/a2/dc/96/a2dc9668f2cf170fe3efeb263128b0e7.gif"
+            alt="Loading"
+          />
+        </p>
+      ) : (
+        props.countries.map((country) => {
+          return (
+            <div key={country.name}>
+              <h3>{country.name}</h3>
+              <h4>{country.capital}</h4>
+              <p>
+                <img
+                  src={country.flag}
+                  alt={country.name}
+                  style={{ width: "100px" }}
+                />
+              </p>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };
@@ -36,6 +45,7 @@ const App = (props) => {
 const mapStataToProps = (state) => {
   return {
     countries: state.countries,
+    isLoading: state.isLoading,
   };
 };
 
